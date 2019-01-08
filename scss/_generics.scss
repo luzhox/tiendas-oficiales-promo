@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+
+@import '_variables';
+@import '_icons';
+
+*{
+    margin: 0;  
+    padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border:0;
+    text-decoration: none;
+    font-family: 'Lato', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    outline:0px;
+}
+
+h1, h2, h3 , h4, h5{
+    font-weight: 700;
+    color:$gray;
+}
+
+
+
+p{
+    color:$gray;
+}
+
+body{
+    margin: 0;
+}
+/// get column width on percent
+@function col($columns, $total) {
+    @return (100% / $total) * $columns;
+}
+
+/// Clearfix mixin
+@mixin clearfix {
+   &:after,
+   &:before {
+       content: '';
+       display: table;
+   }
+   &:after {
+       clear: both;
+   }
+}
+
+/// Show only on desktop screens
+@mixin desktop {
+    @media only screen and (min-width: $breakpoint-desktop){
+       @content;
+   }
+}
+
+/// Show on tablet screens
+@mixin tablet {
+    @media only screen and (min-width: ($breakpoint-tablet + 1)){
+       @content;
+   }
+}
+
+/// Show only on mobile screens
+@mixin mobile {
+    @media only screen and (max-width: $breakpoint-tablet){
+       @content;
+   }
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+ -webkit-appearance: none; 
+ margin: 0; 
+}
+
+.hide-tablet-up{
+    display:none;
+    @include tablet{
+        display: block;
+    }
+}
+.hiden{
+    display:block;
+    @include tablet{
+        display: none;
+    }
+}
+input[type=number] { -moz-appearance:textfield; }
+
+.container{
+   max-width: $breakpoint-desktop;
+   margin: 0 auto;
+   padding: 0 col(2, 37);
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+   overflow: initial;
+   @include clearfix;
+   @include tablet{
+       padding: 0 col(1, 31);
+
+   }
+   
+
+}   
+
+.hide-on-small-only {
+   display: none!important;
+   @include tablet {
+       display: block!important;
+   }
+}
+.clear{ clear: both;}
+.hide-on-medium-only {
+   display: none;
+   @include desktop {
+       display: block;
+   }
+}
+
+.quitarespacios{
+   margin-bottom: 0px!important;
+       padding: 0;
+}
+
+h1{ margin: col(1, 31) auto;
+    text-align: center;
+    font-weight: 400;
+    color: rgb(41, 41, 57);
+    margin-top: col(1,29);
+    margin-bottom: col(1,29);
+
+    font-size: calc(23px + 24 * ((100vw - 320px) / 820));
+    
+@media only screen and (min-width:769px){
+
+    font-size: 42px;
+
+
+}
+
+}
+
+h2{
+    font-size: 32px;
+}
+@import 'datepicker';
+@import 'inputs';
